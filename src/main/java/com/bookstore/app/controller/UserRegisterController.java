@@ -31,7 +31,7 @@ public class UserRegisterController {
 	UserService registerservice;
 	
 	@CrossOrigin(origins="http://localhost:4200")
-	@PostMapping(path="/addnewuser")
+	@PostMapping(path="/signup")
 	public ResponseEntity<ResponceDto> post(@RequestBody UserDto userregisterdto) {
 		ResponceDto userregisterresponcedto = new ResponceDto("Added successfully!", registerservice.add(userregisterdto));
 		return new ResponseEntity<ResponceDto>(userregisterresponcedto , HttpStatus.OK);

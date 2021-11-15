@@ -1,4 +1,7 @@
 package com.bookstore.app.entity;
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +25,11 @@ public class UserEntity {
 	private String emailId;
 	private String password;
 	private Long phoneNumber;
+	private String token;
+	@Column(columnDefinition = "TIMESTAMP")
+	private LocalDateTime tokenCreationDate;
+
+	
 	
 	public UserEntity(int id, UserDto userbookdto) {
 		super();
@@ -30,6 +38,8 @@ public class UserEntity {
 		this.emailId=userbookdto.getEmailId();
 		this.password=userbookdto.getPassword();
 		this.phoneNumber=userbookdto.getPhoneNumber();
+		this.token=userbookdto.getToken();
+		this.tokenCreationDate=userbookdto.getTokenCreationDate();
 		}
 
 	 public UserEntity(UserDto userbookdto) {
@@ -39,6 +49,8 @@ public class UserEntity {
 		this.emailId=userbookdto.getEmailId();
 		this.password=userbookdto.getPassword();
 		this.phoneNumber=userbookdto.getPhoneNumber();
+		this.token=userbookdto.getToken();
+		this.tokenCreationDate=userbookdto.getTokenCreationDate();
 		}
 	
 	

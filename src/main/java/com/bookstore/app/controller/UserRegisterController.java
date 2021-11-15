@@ -9,8 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bookstore.app.dto.ResponceDto;
@@ -45,5 +47,24 @@ public class UserRegisterController {
 		ResponceDto userregisterresponcedto = new ResponceDto("Total List!", List);
 		return new ResponseEntity<ResponceDto>(userregisterresponcedto, HttpStatus.OK);
 	}
+	@PostMapping("/forgot-password")
+	public String forgotPassword(@RequestParam String email) {
 
+		 
+		String response = UserService.forgotPassword(email);
+
+		if (!response.startsWith("Invalid")) {
+			response = "http://localhost:8080/reset-password?token=" + response;
+		}
+		return response;
+	}
+
+	@PutMapping("/reset-password")
+	public String resetPassword(@RequestParam String token,
+			@RequestParam String password) {
+
+		return UserService.resetPassword(token, password);
+	}
 }
+
+

@@ -13,15 +13,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bookstore.app.dto.ResponceDto;
+import com.bookstore.app.dto.ResponseDto;
 import com.bookstore.app.dto.UserDto;
 import com.bookstore.app.entity.UserEntity;
+import com.bookstore.app.helper.JwtRequest;
 import com.bookstore.app.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @CrossOrigin(origins="*")
-@RequestMapping("/NewUser")
 @Slf4j
 @RestController
 public class UserRegisterController {
@@ -32,18 +32,18 @@ public class UserRegisterController {
 	
 	@CrossOrigin(origins="http://localhost:4200")
 	@PostMapping(path="/signup")
-	public ResponseEntity<ResponceDto> post(@RequestBody UserDto userregisterdto) {
-		ResponceDto userregisterresponcedto = new ResponceDto("Added successfully!", registerservice.add(userregisterdto));
-		return new ResponseEntity<ResponceDto>(userregisterresponcedto , HttpStatus.OK);
+	public ResponseEntity<ResponseDto> post(@RequestBody UserDto userregisterdto) {
+		ResponseDto userregisterresponcedto = new ResponseDto("Added successfully!", registerservice.add(userregisterdto));
+		return new ResponseEntity<ResponseDto>(userregisterresponcedto , HttpStatus.OK);
 	}
 	
 	
 	@CrossOrigin(origins="*")
 	@GetMapping("/")
-	public ResponseEntity<ResponceDto> getAllEmployeeData() {
+	public ResponseEntity<ResponseDto> getAllEmployeeData() {
 		List<UserEntity> List = registerservice.getall();
-		ResponceDto userregisterresponcedto = new ResponceDto("Total List!", List);
-		return new ResponseEntity<ResponceDto>(userregisterresponcedto, HttpStatus.OK);
+		ResponseDto userregisterresponcedto = new ResponseDto("Total List!", List);
+		return new ResponseEntity<ResponseDto>(userregisterresponcedto, HttpStatus.OK);
 	}
 
 }

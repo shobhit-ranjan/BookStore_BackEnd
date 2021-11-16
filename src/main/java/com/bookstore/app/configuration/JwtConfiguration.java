@@ -43,7 +43,7 @@ public class JwtConfiguration extends WebSecurityConfigurerAdapter {
 			.cors()
 			.disable()
 			.authorizeRequests()
-			.antMatchers("/token","/signup","/login").permitAll()
+			.antMatchers("/token","/signup","/book/").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.formLogin().loginPage("/login")

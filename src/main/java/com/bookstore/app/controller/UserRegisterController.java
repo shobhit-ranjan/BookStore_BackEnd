@@ -22,6 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @CrossOrigin(origins="*")
 @Slf4j
 @RestController
+
 public class UserRegisterController {
 	
 	
@@ -40,7 +41,7 @@ public class UserRegisterController {
 	@GetMapping("/")
 	public ResponseEntity<ResponseDto> getAllEmployeeData() {
 		List<UserEntity> List = userService.getall();
-		ResponseDto userRegisterResponceDto = new ResponseDto("Total List!", List);
+		ResponseDto userRegisterResponceDto = new ResponseDto("All the Users!", List);
 		return new ResponseEntity<ResponseDto>(userRegisterResponceDto, HttpStatus.OK);
 	}
 	

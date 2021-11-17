@@ -53,6 +53,4 @@ public class BookEntity {
 		this.description=bookDto.getDescription();
 	}
 	
-	
-	
 }

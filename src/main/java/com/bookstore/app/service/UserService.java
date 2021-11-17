@@ -2,6 +2,8 @@ package com.bookstore.app.service;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
@@ -21,17 +23,9 @@ public class UserService {
 	
 	
 	public UserEntity add(UserDto userDto) {
-		UserEntity registedUser= new UserEntity(userDto);
-		List<UserEntity> userList = userRegisterRepository.findAll();
-		boolean found=false;
-		for(UserEntity e: userList) {
-			if(e.getEmailId().equals(registedUser.getEmailId())){
-				found=true;
-				break;
-			}
-		}
-		
-		if(!found){
+		UserEntity registedUser= userRegisterRepository.findByEmailId(userDto.emailId);
+	
+		if(registedUser!=null){
 			userRegisterRepository.save(registedUser);
 			return registedUser;			
 		}

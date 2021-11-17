@@ -2,6 +2,8 @@ package com.bookstore.app.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +33,7 @@ public class UserRegisterController {
 	
 	@CrossOrigin(origins="http://localhost:4200")
 	@PostMapping(path="/signup")
-	public ResponseEntity<ResponseDto> post(@RequestBody UserDto userregisterdto) {
+	public ResponseEntity<ResponseDto> post(@RequestBody  @Valid UserDto userregisterdto) {
 		ResponseDto userRegisterResponceDto = new ResponseDto("Added successfully!", userService.add(userregisterdto));
 		return new ResponseEntity<ResponseDto>(userRegisterResponceDto , HttpStatus.OK);
 	}

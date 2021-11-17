@@ -11,10 +11,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-
-@Data
 @NoArgsConstructor
-public class UserEntity {
+public @Data class UserEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -26,23 +24,21 @@ public class UserEntity {
 	public UserEntity(int id, UserDto userbookdto) {
 		super();
 		this.id = id;
-		this.fullName=userbookdto.getFullName();
-		this.emailId=userbookdto.getEmailId();
-		this.password=userbookdto.getPassword();
-		this.phoneNumber=userbookdto.getPhoneNumber();
+		this.fullName=userbookdto.fullName;
+		this.emailId=userbookdto.emailId;
+		this.password=userbookdto.password;
+		this.phoneNumber=userbookdto.phoneNumber;
 		}
 
 	 public UserEntity(UserDto userbookdto) {
 		super();
 		this.id = id;
-		this.fullName=userbookdto.getFullName();
-		this.emailId=userbookdto.getEmailId();
-		this.password=userbookdto.getPassword();
-		this.phoneNumber=userbookdto.getPhoneNumber();
+		this.fullName=userbookdto.fullName;
+		this.emailId=userbookdto.emailId;
+		this.password=userbookdto.password;
+		this.phoneNumber=userbookdto.phoneNumber;
 		}
-	
-	
-	
+
 
 }
 

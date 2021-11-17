@@ -1,15 +1,24 @@
 package com.bookstore.app.dto;
 
+import javax.validation.constraints.NotNull;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-@Data
-@AllArgsConstructor
-public class UserDto {
+import javax.validation.constraints.Pattern;
+
+import lombok.ToString;
+
+@ToString public class UserDto {
 	
-	private String fullName;
-	private String emailId;
-	private String password;
-	private Long phoneNumber;
+	@NotNull
+	@Pattern(regexp = "^[A-Z][a-z]{3,}$", message= "Name Not In Proper Format")
+	public String fullName;
+	
+	@NotNull
+	public String emailId;
+	
+	@NotNull
+	public String password;
+	
+	@NotNull
+	public Long phoneNumber;
 	
 }

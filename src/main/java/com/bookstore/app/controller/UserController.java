@@ -2,6 +2,8 @@ package com.bookstore.app.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +39,7 @@ public class UserController {
 	
 	@CrossOrigin(origins="http://localhost:4200")
 	@PostMapping(path="/signup")
-	public ResponseEntity<ResponseDto> post(@RequestBody UserDto userregisterdto) {
+	public ResponseEntity<ResponseDto> post(@Valid @RequestBody UserDto userregisterdto) {
 		ResponseDto userRegisterResponceDto = new ResponseDto("Added successfully!", userService.add(userregisterdto));
 		return new ResponseEntity<ResponseDto>(userRegisterResponceDto , HttpStatus.OK);
 	}
@@ -47,7 +49,7 @@ public class UserController {
 	@GetMapping("/")
 	public ResponseEntity<ResponseDto> getAllEmployeeData() {
 		List<UserEntity> List = userService.getall();
-		ResponseDto userRegisterResponceDto = new ResponseDto("Total List!", List);
+		ResponseDto userRegisterResponceDto = new ResponseDto("All the Users!", List);
 		return new ResponseEntity<ResponseDto>(userRegisterResponceDto, HttpStatus.OK);
 	}
 	

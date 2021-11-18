@@ -6,4 +6,5 @@ import com.bookstore.app.entity.UserEntity;
 
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 	public UserEntity findByEmailId(String email);
+	public boolean existsByEmailId(String email);
 }

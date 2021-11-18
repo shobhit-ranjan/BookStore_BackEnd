@@ -1,16 +1,27 @@
 package com.bookstore.app.entity;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.data.annotation.CreatedDate;
 
 import com.bookstore.app.dto.UserDto;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Data
 @NoArgsConstructor
 public @Data class UserEntity {
 	@Id
@@ -20,6 +31,26 @@ public @Data class UserEntity {
 	private String emailId;
 	private String password;
 	private Long phoneNumber;
+	private String role;
+	
+	@CreatedDate
+	@Temporal(TemporalType.DATE)
+	private Date registerDate;
+	
+	@JsonFormat(pattern="dd MM yyyy")
+	private LocalDate updatedDate;
+	
+	private boolean status;
+
+	@OneToMany
+	private List<Order> orderList;
+	
+	@OneToOne
+	private Cart cartlist;
+	
+	@OneToOne
+	private WishList wishList; 
+	
 	
 	public UserEntity(int id, UserDto userbookdto) {
 		super();

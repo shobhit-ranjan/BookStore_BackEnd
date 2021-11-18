@@ -1,5 +1,6 @@
 package com.bookstore.app.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,9 +27,9 @@ public class BookEntity {
 	private int price;
 	private double rating;
 	private String img;
-	private String description;
-	@JsonIgnoreProperties(value={"hibernateLazyInitializer","handler","fieldHandler"}) 
 	
+	@Column(length = 1000)
+	private String description;
 
 	public BookEntity(BookDto bookDto){
 		super();

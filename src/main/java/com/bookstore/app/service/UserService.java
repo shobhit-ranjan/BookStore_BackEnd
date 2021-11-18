@@ -24,10 +24,11 @@ public class UserService {
 	
 	public UserEntity add(UserDto userDto) {
 		UserEntity registedUser= userRegisterRepository.findByEmailId(userDto.emailId);
-	
-		if(registedUser!=null){
-			userRegisterRepository.save(registedUser);
-			return registedUser;			
+	    UserEntity userEntity = new UserEntity(userDto);
+		if(registedUser == null){
+			
+			userRegisterRepository.save(userEntity);
+			return userEntity;			
 		}
 		return null;
 	}

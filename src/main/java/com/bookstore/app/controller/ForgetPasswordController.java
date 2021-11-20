@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bookstore.app.dto.ResponseDto;
 import com.bookstore.app.service.UserService;
 
-
 @RestController
 public class ForgetPasswordController {
 
@@ -22,7 +21,7 @@ public class ForgetPasswordController {
 	@CrossOrigin(origins="*")
 	@GetMapping("/forget-password/{emailId}")
 	public ResponseEntity<ResponseDto> getAllEmployeeData(@PathVariable String emailId) {
-		ResponseDto userRegisterResponceDto = new ResponseDto("All the Users!", userService.forgetPasswordMailSender(emailId));
+		ResponseDto userRegisterResponceDto = new ResponseDto("All Users!", userService.forgetPasswordMailSender(emailId));
 		return new ResponseEntity<ResponseDto>(userRegisterResponceDto, HttpStatus.OK);
 	}
 }

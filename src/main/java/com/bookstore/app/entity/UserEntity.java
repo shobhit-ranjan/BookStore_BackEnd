@@ -3,6 +3,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @Entity
 @Table(name="User") 
 @NoArgsConstructor
@@ -43,13 +45,13 @@ public class UserEntity {
 	
 	private boolean status;
 
-	@OneToMany
+	@OneToMany(cascade = {CascadeType.ALL})
 	private List<Order> orderList;
 	
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	private Cart cartlist;
 	
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	private WishList wishList; 
 	
 	

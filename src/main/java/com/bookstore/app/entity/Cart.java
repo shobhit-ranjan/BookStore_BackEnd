@@ -1,8 +1,10 @@
 package com.bookstore.app.entity;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.util.Date;
 
 @Entity
 @Table(name="Cart") 
@@ -41,7 +42,7 @@ public class Cart {
 	@JsonFormat(pattern="dd MM yyyy")
 	private LocalDate updatedDate;
 	
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	private UserEntity userEntity;
 	
 	@OneToMany

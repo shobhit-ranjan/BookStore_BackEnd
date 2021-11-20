@@ -1,8 +1,6 @@
 package com.bookstore.app.entity;
 
-import java.time.LocalDate;
-import java.util.List;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,6 +30,6 @@ public class CustomerDetails {
 	    private String landmark;
 	    private String addressType;
 	    
-	    @ManyToOne
+	    @ManyToOne(cascade = {CascadeType.ALL})
 	    private UserEntity User;
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.bookstore.app.dto.ResponseDto;
@@ -34,8 +35,7 @@ public class UserController {
 	
 	@Autowired
 	UserService userService;
-	
-	
+		
 	
 	@CrossOrigin(origins="http://localhost:4200")
 	@PostMapping(path="/signup")
@@ -55,7 +55,14 @@ public class UserController {
 	
 	@PutMapping("/reset-password")
 	public ResponseEntity<ResponseDto> resetpassword(@RequestBody NewPassword newPassword) {
-		ResponseDto userRegisterResponceDto = new ResponseDto("Total List!", userService.newPassword(newPassword.getToken(), newPassword.getNewPassword()));
+		ResponseDto userRegisterResponceDto = new ResponseDto("NewPassWord:", userService.newPassword(newPassword.getToken(), newPassword.getNewPassword()));
+		return new ResponseEntity<ResponseDto>(userRegisterResponceDto, HttpStatus.OK);
+	}
+	
+	@CrossOrigin(origins="*")
+	@GetMapping("/Id/")
+	public ResponseEntity<ResponseDto> getUser(@RequestParam(value="token") String token ) {
+		ResponseDto userRegisterResponceDto = new ResponseDto("All the Users!", userService.getUserbyToken(token));
 		return new ResponseEntity<ResponseDto>(userRegisterResponceDto, HttpStatus.OK);
 	}
 	

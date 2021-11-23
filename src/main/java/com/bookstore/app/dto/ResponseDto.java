@@ -1,7 +1,5 @@
 package com.bookstore.app.dto;
 
-
-
 import lombok.Data;
 
 public @Data class ResponseDto {

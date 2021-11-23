@@ -33,6 +33,7 @@ public class CartController {
 		return new ResponseEntity<ResponseDto>(responseDto, HttpStatus.OK);
 	}
 
+	//Delete book from the cart using book_id
 	@DeleteMapping("/{bookId}")
 	public ResponseEntity<ResponseDto> removeToCart(@PathVariable int bookId, @RequestParam(value="Id") String emailId) {
 		ResponseDto responseDto = new ResponseDto("Book:", userService.removeFromCart(emailId, bookId));

@@ -12,4 +12,5 @@ public class BookDto {
 	private double rating;
 	private String img;
 	private String description;
+	private int quatity;
 }

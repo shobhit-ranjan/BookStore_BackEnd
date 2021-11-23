@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bookstore.app.dto.ResponseDto;
+import com.bookstore.app.repository.CartRepository;
+import com.bookstore.app.service.CartService;
 import com.bookstore.app.service.UserService;
 
 @CrossOrigin("*")
@@ -19,24 +21,24 @@ import com.bookstore.app.service.UserService;
 public class CartController {
 
 	@Autowired
-	UserService userService;
-
-	@RequestMapping("/{bookId}")
-	public ResponseEntity<ResponseDto> addToCart(@RequestParam(value="Id") String emailId, @PathVariable int bookId) {
-		ResponseDto responseDto = new ResponseDto("Book:", userService.addToCart(emailId, bookId));
+	CartService cartService;
+	
+	@RequestMapping("{userId}/{bookId}/{quantity}")
+	public ResponseEntity<ResponseDto> addToCart(@PathVariable int userId, @PathVariable int bookId, @PathVariable int quantity) {
+		ResponseDto responseDto = new ResponseDto("Book:", cartService.add(userId, bookId, quantity) );
 		return new ResponseEntity<ResponseDto>(responseDto, HttpStatus.OK);
 	}
 
-	@RequestMapping("/")
-	public ResponseEntity<ResponseDto> cartList(@RequestParam(value = "Id") String emailId) {
-		ResponseDto responseDto = new ResponseDto("CartList:", userService.getCartList(emailId));
+	@RequestMapping("/{userId}")
+	public ResponseEntity<ResponseDto> cartList(@PathVariable int userId) {
+		ResponseDto responseDto = new ResponseDto("CartList:", cartService.getList(userId));
 		return new ResponseEntity<ResponseDto>(responseDto, HttpStatus.OK);
 	}
 
-	//Delete book from the cart using book_id
-	@DeleteMapping("/{bookId}")
-	public ResponseEntity<ResponseDto> removeToCart(@PathVariable int bookId, @RequestParam(value="Id") String emailId) {
-		ResponseDto responseDto = new ResponseDto("Book:", userService.removeFromCart(emailId, bookId));
+	
+	@DeleteMapping("{userId}/{bookId}/{quantity}")
+	public ResponseEntity<ResponseDto> removeToCart(@PathVariable int userId, @PathVariable int bookId, @PathVariable int quantity) {
+		ResponseDto responseDto = new ResponseDto("Book:", cartService.delete(userId, bookId, quantity));
 		return new ResponseEntity<ResponseDto>(responseDto, HttpStatus.OK);
 	}
 }

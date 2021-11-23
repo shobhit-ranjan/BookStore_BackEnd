@@ -44,15 +44,6 @@ public class UserEntity {
 	private LocalDate updatedDate;
 	
 	private boolean status;
-
-	@OneToMany(cascade = {CascadeType.ALL})
-	private List<Order> orderList;
-	
-	@OneToOne(cascade = {CascadeType.ALL})
-	private Cart cartlist;
-	
-	@OneToOne(cascade = {CascadeType.ALL})
-	private WishList wishList; 
 	
 	
 	public UserEntity(int id, UserDto userbookdto) {

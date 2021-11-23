@@ -29,6 +29,7 @@ public class BookEntity {
 	private int price;
 	private double rating;
 	private String img;
+	private int quantity;
 	
 	@Column(length = 1000)
 	private String description;
@@ -42,6 +43,7 @@ public class BookEntity {
 		this.rating=bookDto.getRating();
 		this.img=bookDto.getImg();
 		this.description=bookDto.getDescription();
+		this.quantity=bookDto.getQuatity();
 	}
 	
 	
@@ -54,6 +56,7 @@ public class BookEntity {
 		this.rating=bookDto.getRating();
 		this.img=bookDto.getImg();
 		this.description=bookDto.getDescription();
+		this.quantity=bookDto.getQuatity();
 	}
 	
 }

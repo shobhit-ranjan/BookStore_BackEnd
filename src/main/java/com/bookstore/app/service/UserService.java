@@ -1,6 +1,7 @@
 package com.bookstore.app.service;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.bookstore.app.dto.UserDto;
 import com.bookstore.app.entity.BookEntity;
 import com.bookstore.app.entity.Cart;
+import com.bookstore.app.entity.WishList;
 import com.bookstore.app.entity.UserEntity;
 import com.bookstore.app.helper.JwtRequest;
 import com.bookstore.app.repository.BookRepository;
@@ -100,17 +102,15 @@ public class UserService {
 				cart.setBookList(null);
 //				System.out.println(bookList);
 				cart.setBookList(bookList);
-			}
-			else {
+			} else {
 				List<BookEntity> bookList = new ArrayList<>();
 				bookList.add(bookEntity);
 				cart.setBookList(bookList);
 			}
-			
-			
+
 			userEntity.setCartlist(null);
 			userEntity.setCartlist(cart);
-			
+
 			userRegisterRepository.save(userEntity);
 			return "Added";
 		}
@@ -138,10 +138,46 @@ public class UserService {
 		}
 		return null;
 	}
-	
+
 	public UserEntity getUserbyToken(String Token) {
 		UserEntity entity = userRegisterRepository.findByEmailId(jwtUtil.extractUsername(Token));
 		return entity;
+	}
+
+	public List<BookEntity> getWishList(String emailId) {
+		UserEntity userEntity = userRegisterRepository.findByEmailId(emailId);
+		if (userEntity != null && userEntity.getWishList() != null) {
+			return userEntity.getWishList().getBookList();
+		}
+		return null;
+	}
+
+	public String addToWishList(String emailId, int bookId) {
+		UserEntity userEntity = userRegisterRepository.findByEmailId(emailId);
+		BookEntity bookEntity = bookRepository.getById(bookId);
+
+		if (userEntity != null && bookEntity != null) {
+			WishList wishList = new WishList();
+			if (userEntity.getWishList() != null) {
+				List<BookEntity> booklist = userEntity.getWishList().getBookList();
+				booklist.add(bookEntity);
+				wishList.setBookList(booklist);
+				userEntity.setWishList(wishList);
+			} else {
+				List<BookEntity> booklist = new ArrayList<>();
+				booklist.add(bookEntity);
+				wishList.setBookList(booklist);
+				userEntity.setWishList(wishList);
+			}
+
+			userEntity.setWishList(wishList);
+
+			userRegisterRepository.save(userEntity);
+
+			return "Added To WishList";
+		}
+
+		return "Not Added To WishList";
 	}
 
 }

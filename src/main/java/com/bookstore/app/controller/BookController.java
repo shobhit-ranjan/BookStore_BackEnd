@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bookstore.app.dto.BookDto;
@@ -42,6 +43,12 @@ public class BookController {
 	public ResponseEntity<ResponseDto> addBook(@RequestBody BookDto bookDto){
 		BookEntity bookEntity= new BookEntity(bookDto);
 		ResponseDto responseDto = new ResponseDto("Book Added", bookService.addBook(bookEntity));
+		return new ResponseEntity<ResponseDto>(responseDto, HttpStatus.OK);
+	}
+	
+	@RequestMapping("/search/{name}")
+	public ResponseEntity<ResponseDto> searchBookByName(@PathVariable String name){
+		ResponseDto responseDto = new ResponseDto("Book:", bookService.bookSearch(name));
 		return new ResponseEntity<ResponseDto>(responseDto, HttpStatus.OK);
 	}
 	

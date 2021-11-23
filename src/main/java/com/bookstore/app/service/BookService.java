@@ -31,5 +31,14 @@ public class BookService {
 		bookRepository.save(bookEntity);
 		return bookEntity;
 	}
+	
+	public BookEntity bookSearch(String name){
+		if(bookRepository.findByNameStartsWith(name)!=null) {
+			return bookRepository.findByNameStartsWith(name);
+		}else {
+			return null;
+			
+		}
+	}
 
 }

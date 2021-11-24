@@ -2,7 +2,11 @@ package com.bookstore.app.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 
 import com.bookstore.app.entity.BookEntity;
@@ -52,6 +56,12 @@ public class CartService {
 		List<Bookcart> booklist= cartlist.stream().map(n-> new Bookcart(n.getBook(), n.getQuantity()) ).toList();
 		return booklist;
 	}
+	public List<BookEntity> getListForOrder(int userId){
+		UserEntity user = userRepo.getById(userId);
+		List<Cart> cartlist= cartRepo.findByUser(user);
+		List<BookEntity> booklist= cartlist.stream().map(n->n.getBook()).toList();
+		return booklist;
+	}
 	
 	public String delete(int userId, int bookId, int quantity) {
 		BookEntity book= bookRepo.getById(bookId);
@@ -68,5 +78,9 @@ public class CartService {
 			return "Updated";
 		}
 		return "Invalid";
+	}
+	
+	public void deleteAll(UserEntity user) {
+		cartRepo.deleteAllByUser(user);
 	}
 }

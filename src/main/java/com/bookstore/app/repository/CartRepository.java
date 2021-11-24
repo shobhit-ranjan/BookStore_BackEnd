@@ -13,4 +13,5 @@ import com.bookstore.app.entity.UserEntity;
 public interface CartRepository extends JpaRepository<Cart, Integer> {
 	public Cart findByUserAndBook(UserEntity user, BookEntity book);
 	public List<Cart> findByUser(UserEntity user);
+	public void deleteAllByUser(UserEntity user);
 }

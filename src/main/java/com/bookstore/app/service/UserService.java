@@ -82,7 +82,7 @@ public class UserService {
 			String token = jwtUtil.generateToken(userDetails);
 
 			System.out.println("trying to send");
-			service.sendSimpleEmail(emailId, "URL" + token, "Reset Your Password for BootStore");
+			service.sendSimpleEmail(emailId, "Your Reset Password Link For BookStore Is http://localhost:4200/reset-password/" + token, "Reset Your Password for BootStore");
 			return ("Sent");
 		}
 		return "Not Sent";

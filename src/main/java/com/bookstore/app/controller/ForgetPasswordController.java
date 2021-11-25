@@ -17,8 +17,7 @@ public class ForgetPasswordController {
 
 	@Autowired
 	UserService userService;
-	
-	@CrossOrigin(origins="*")
+	@CrossOrigin(origins="http://localhost:4200")
 	@GetMapping("/forget-password/{emailId}")
 	public ResponseEntity<ResponseDto> getAllEmployeeData(@PathVariable String emailId) {
 		ResponseDto userRegisterResponceDto = new ResponseDto("All Users!", userService.forgetPasswordMailSender(emailId));

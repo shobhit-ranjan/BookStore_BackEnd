@@ -12,7 +12,7 @@ import com.bookstore.app.dto.ResponseDto;
 import com.bookstore.app.repository.OrderRespository;
 import com.bookstore.app.service.OrderService;
 
-@CrossOrigin("*")
+@CrossOrigin(origins="http://localhost:4200")
 @RequestMapping("/order")
 @RestController
 public class OrderController {

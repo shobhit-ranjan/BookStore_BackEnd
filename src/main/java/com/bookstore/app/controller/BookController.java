@@ -17,7 +17,7 @@ import com.bookstore.app.entity.BookEntity;
 import com.bookstore.app.service.BookService;
 
 
-@CrossOrigin("*")
+@CrossOrigin(origins="http://localhost:4200")
 @RequestMapping("/book")
 @RestController
 public class BookController {

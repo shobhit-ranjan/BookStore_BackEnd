@@ -27,6 +27,7 @@ public class BookEntity {
 	private String name;
 	private String author;
 	private int price;
+	private int markedPrice;
 	private double rating;
 	private String img;
 	private int quantity;
@@ -44,6 +45,7 @@ public class BookEntity {
 		this.img=bookDto.getImg();
 		this.description=bookDto.getDescription();
 		this.quantity=bookDto.getQuatity();
+		this.markedPrice=bookDto.getMarkedPrice();
 	}
 	
 	

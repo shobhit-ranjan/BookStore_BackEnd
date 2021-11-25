@@ -13,4 +13,5 @@ public class BookDto {
 	private String img;
 	private String description;
 	private int quatity;
+	private int markedPrice;
 }

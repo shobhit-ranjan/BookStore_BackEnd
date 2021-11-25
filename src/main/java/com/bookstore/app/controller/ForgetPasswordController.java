@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bookstore.app.dto.ResponseDto;
 import com.bookstore.app.service.UserService;
 
+@CrossOrigin(origins="http://localhost:4200")
 @RestController
 public class ForgetPasswordController {
 

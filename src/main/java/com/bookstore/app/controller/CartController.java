@@ -15,7 +15,7 @@ import com.bookstore.app.repository.CartRepository;
 import com.bookstore.app.service.CartService;
 import com.bookstore.app.service.UserService;
 
-@CrossOrigin("*")
+@CrossOrigin(origins="http://localhost:4200")
 @RequestMapping("/cart")
 @RestController
 public class CartController {

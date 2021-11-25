@@ -18,7 +18,7 @@ import com.bookstore.app.helper.JwtResponse;
 import com.bookstore.app.service.CustomUserDeatilsService;
 import com.bookstore.app.util.JwtUtil;
 
-
+@CrossOrigin(origins="http://localhost:4200")
 @RestController
 public class JwtController {
 

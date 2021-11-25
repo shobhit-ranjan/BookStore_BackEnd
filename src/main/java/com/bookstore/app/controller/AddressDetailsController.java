@@ -14,7 +14,7 @@ import com.bookstore.app.dto.AddressDetailsDto;
 import com.bookstore.app.dto.ResponseDto;
 import com.bookstore.app.service.AddressDetailsService;
 
-@CrossOrigin("*")
+@CrossOrigin(origins="http://localhost:4200")
 @RequestMapping("/address")
 @RestController
 public class AddressDetailsController {

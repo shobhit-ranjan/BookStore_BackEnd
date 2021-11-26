@@ -68,11 +68,11 @@ public class CartService {
 		UserEntity user = userRepo.getById(userId);
 		Cart cart= cartRepo.findByUserAndBook(user, book);
 		if(cart!=null && book !=null && user!=null) {
-			if(quantity==0 || cart.getQuantity()-quantity<=0) {
+			if(quantity<=0) {
 				cartRepo.delete(cart);
 			}
 			else {
-				cart.setQuantity(cart.getQuantity()-quantity);
+				cart.setQuantity(quantity);
 				cartRepo.save(cart);
 			}
 			return "Updated";

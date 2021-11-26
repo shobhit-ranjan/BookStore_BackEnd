@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,7 +46,7 @@ public class UserController {
 	}
 	
 	
-	@CrossOrigin(origins="*")
+	
 	@GetMapping("/")
 	public ResponseEntity<ResponseDto> getAllEmployeeData() {
 		List<UserEntity> List = userService.getall();
@@ -59,9 +60,9 @@ public class UserController {
 		return new ResponseEntity<ResponseDto>(userRegisterResponceDto, HttpStatus.OK);
 	}
 	
-	@CrossOrigin(origins="*")
-	@GetMapping("/Id/")
-	public ResponseEntity<ResponseDto> getUser(@RequestParam(value="token") String token ) {
+	
+	@GetMapping("/id/{token}")
+	public ResponseEntity<ResponseDto> getUser(@PathVariable String token ) {
 		ResponseDto userRegisterResponceDto = new ResponseDto("All the Users!", userService.getUserbyToken(token));
 		return new ResponseEntity<ResponseDto>(userRegisterResponceDto, HttpStatus.OK);
 	}

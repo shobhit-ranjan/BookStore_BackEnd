@@ -40,10 +40,8 @@ public class JwtConfiguration extends WebSecurityConfigurerAdapter {
 		http
 			.csrf()
 			.disable()
-			.cors()
-			.disable()
 			.authorizeRequests()
-			.antMatchers("/token","/signup","/book/{id}", "/book/","/forget-password/{emailId}","/reset-password").permitAll()
+			.antMatchers("/token","/signup" ,"/forget-password/{emailId}","/reset-password","/id/{token}", "/order/listoforders/{userId}","/order/placeorder/{userId}").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.formLogin().loginPage("/login")
@@ -53,6 +51,7 @@ public class JwtConfiguration extends WebSecurityConfigurerAdapter {
 			.and()
 			.exceptionHandling().authenticationEntryPoint(entryPoint);
 		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+		http.cors();
 	
 	}
 	

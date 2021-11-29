@@ -32,9 +32,9 @@ public class BookService {
 		return bookEntity;
 	}
 	
-	public BookEntity bookSearch(String name){
-		if(bookRepository.findByNameStartsWith(name)!=null) {
-			return bookRepository.findByNameStartsWith(name);
+	public List<BookEntity> bookSearch(String name){
+		if(bookRepository.findAllByNameStartsWith(name)!=null) {
+			return bookRepository.findAllByNameStartsWith(name);
 		}else {
 			return null;
 			
